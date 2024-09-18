@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opdracht 5</title>
+    <style>
+      #knopContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #gooiKnop {
+        margin: 2em auto;
+        padding: 0.5em 3em;
+        border-radius: 0.5em;
+        font-size: 2em;
+      }
+      .arrayContainer {
+        display: grid;
+        border: 2px solid black;
+        grid-template-columns: repeat(5, 1fr);
+        align-items: center;
+        margin: 5% 20%;
+        padding: 2em;
+      }
+      #box-1,
+      #box-2,
+      #box-3,
+      #box-4,
+      #box-5 {
+        display: inline-grid;
+        border: 1px solid black;
+        margin: 5%;
+        align-items: center;
+        font-size: 2em;
+        text-align: center;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="knopContainer">
+      <button id="gooiKnop">Gooien!</button>
+    </div>
+    <div class="arrayContainer">
+      <div id="box-1"></div>
+      <div id="box-2"></div>
+      <div id="box-3"></div>
+      <div id="box-4"></div>
+      <div id="box-5"></div>
+    </div>
+    <script src="Opdr5.js"></script>
+  </body>
+</html>
