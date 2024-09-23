@@ -1,18 +1,23 @@
 //JavaScript
 let myArray = [];
+let aantalArray = [];
+
 const gooiKnop = document.querySelector("#gooiKnop");
-let count;
 
 function countNumber(num) {
+  let count = 0;
   for (let i = 0; i <= myArray.length; i++) {
     if (myArray[i] == num) {
-      count += 1;
+      count++;
     }
   }
+  const aantalBox = document.querySelector("#row-" + num);
+  aantalBox.innerHTML = count;
+  aantalArray.push(count);
 }
 
 function vulArray() {
-  count = 0;
+  aantalArray = [];
   myArray = [];
   for (let i = 0; i < 5; i++) {
     let nummer = Math.floor(Math.random() * 6) + 1;
@@ -20,9 +25,11 @@ function vulArray() {
     boxInhoud.innerHTML = nummer;
     myArray.push(nummer);
   }
-  countNumber(2);
-  console.log(myArray);
-  console.log(count);
+
+  for (let i = 1; i <= 6; i++) {
+    countNumber(i);
+  }
+  console.log(aantalArray);
 }
 
 gooiKnop.addEventListener("click", vulArray);

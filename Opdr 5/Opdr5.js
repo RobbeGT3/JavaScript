@@ -9,6 +9,7 @@ function countNumber(num) {
       count += 1;
     }
   }
+  console.log(count);
 }
 
 function vulArray() {
@@ -22,7 +23,6 @@ function vulArray() {
   }
   countNumber(2);
   console.log(myArray);
-  console.log(count);
 }
 
 gooiKnop.addEventListener("click", vulArray);
