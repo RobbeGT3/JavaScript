@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eindopdracht YAHTZEE</title>
+    <link rel="stylesheet" href="Style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Yahtzee</h1>
+    </header>
+    <section class="mainSection">
+      <div class="mainContainer">
+        <div id="DobbelsteenBox">
+          <div class="knopDiv">
+            <button id="gooiKnop">Gooien</button>
+          </div>
+          <div class="diceDiv">
+            <div class="dices"></div>
+            <div class="dices"></div>
+            <div class="dices"></div>
+            <div class="dices"></div>
+            <div class="dices"></div>
+          </div>
+        </div>
+        <div id="scorebord">
+          <table>
+            <tr>
+              <th id="kolom1"></th>
+              <th class="spelerKolom">Player 1</th>
+            </tr>
+            <tr>
+              <th>Ones</th>
+              <td id="player1Ones" class="score1"></td>
+            </tr>
+            <tr>
+              <th>Twos</th>
+              <td id="player1Twos" class="score1"></td>
+            </tr>
+            <tr>
+              <th>Threes</th>
+              <td id="player1Threes" class="score1"></td>
+            </tr>
+            <tr>
+              <th>Fours</th>
+              <td id="player1Fours" class="score1"></td>
+            </tr>
+            <tr>
+              <th>Fives</th>
+              <td id="player1Fives" class="score1"></td>
+            </tr>
+            <tr class="laatsteLijn">
+              <th>Sixes</th>
+              <td id="player1Sixes" class="score1"></td>
+            </tr>
+            <tr>
+              <th>Sum</th>
+              <td id="player1Sum"></td>
+            </tr>
+            <tr class="laatsteLijn">
+              <th>Bonus</th>
+              <td id="player1Bonus"></td>
+            </tr>
+            <tr>
+              <th>Three of a kind</th>
+              <td id="player1ThreeOfAKind" class="score1"></td>
+            </tr>
+            <tr>
+              <th>Four of a kind</th>
+              <td id="player1FourOfAKind" class="score1"></td>
+            </tr>
+            <tr>
+              <th>Full house</th>
+              <td id="player1FullHouse" class="score1"></td>
+            </tr>
+            <tr>
+              <th>Small straight</th>
+              <td id="player1SmallStraight" class="score1"></td>
+            </tr>
+            <tr>
+              <th>Large straight</th>
+              <td id="player1LargeStraight" class="score1"></td>
+            </tr>
+            <tr>
+              <th>Chance</th>
+              <td id="player1Chance" class="score1"></td>
+            </tr>
+            <tr class="laatsteLijn">
+              <th>YAHTZEE</th>
+              <td id="player1YAHTZEE" class="score1"></td>
+            </tr>
+            <tr>
+              <th>TOTAL SCORE</th>
+              <td id="player1Total"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+    <script src="yahtzee.js"></script>
+  </body>
+</html>
