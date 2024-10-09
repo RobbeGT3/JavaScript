@@ -21,6 +21,15 @@ let score = [
   { naam: "total", value: 0 }, //15
 ];
 
+const diceImages = {
+  1: 'Images/1.png',
+  2: 'Images/2.png',
+  3: 'Images/3.png',
+  4: 'Images/4.png',
+  5: 'Images/5.png',
+  6: 'Images/6.png',
+};
+
 const gooiKnop = document.querySelector("#gooiKnop");
 const diceDivs = document.querySelectorAll(".dices");
 const scoreCells = document.querySelectorAll(".score1");
@@ -31,15 +40,14 @@ startYahtzee();
 
 function startYahtzee() {
   holdingValueDices();
-  updateDices();
-  generateValues();
+  updateDiceImages(diceValue);
 }
 
 function gooiDobbelstenen() {
   turns--;
   generateValues();
-  updateDices();
   updateScore();
+  updateDiceImages(diceValue);
 
   if (turns === 0) {
     holdingValueScore();
@@ -67,14 +75,12 @@ function holdingValueDices() {
   function hold(index, divElement) {
     diceHold[index] = !diceHold[index];
     if (!diceHold[index]) {
-      divElement.style = "border: 1px solid black;";
+      divElement.style = "border: 0px";
     } else {
       divElement.style = "border: 3px solid black;";
     }
   }
 }
-
-function playerTurn() {}
 
 function generateValues() {
   for (let i = 0; i < 5; i++) {
@@ -85,11 +91,12 @@ function generateValues() {
   }
 }
 
-function updateDices() {
-  diceDivs.forEach((div, index) => {
-    if (index < diceValue.length) {
-      div.innerHTML = diceValue[index];
-    }
+function updateDiceImages(values) {
+  values.forEach((value, index) => {
+      const imgElement = document.getElementById(`img${index + 1}`);
+      if (imgElement) {
+          imgElement.src = diceImages[value]; 
+      }
   });
 }
 
@@ -123,6 +130,7 @@ function updateScore() {
   if (!score[5].locked) {
     score[5].value = 6 * countNumber(6);
   }
+
   //sum
   score[13].value = upperSum();
   //bonus
