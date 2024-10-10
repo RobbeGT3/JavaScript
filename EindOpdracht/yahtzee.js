@@ -1,3 +1,4 @@
+// Yahtzee opdracht
 let diceValue = [1, 2, 3, 4, 5];
 let diceHold = [false, false, false, false, false];
 let turns = 3;
@@ -58,6 +59,13 @@ function gooiDobbelstenen() {
           lockScore(cell.id);
           turns = 3;
           document.getElementById("gooiKnop").disabled = false;
+
+          diceDivs.forEach((index) =>{
+            if(diceHold[index]){
+              console.log(diceHold)
+            }
+          })
+
         });
       });
     }
@@ -68,16 +76,16 @@ function gooiDobbelstenen() {
 function holdingValueDices() {
   diceDivs.forEach((element, index) => {
     element.addEventListener("click", function () {
-      hold(index, this);
+      holdDice(index, this);
     });
   });
 
-  function hold(index, divElement) {
+  function holdDice(index, divElement) {
     diceHold[index] = !diceHold[index];
     if (!diceHold[index]) {
       divElement.style = "border: 0px";
     } else {
-      divElement.style = "border: 3px solid black;";
+      divElement.style = "border: 3px solid darkblue; border";
     }
   }
 }
@@ -130,13 +138,6 @@ function updateScore() {
   if (!score[5].locked) {
     score[5].value = 6 * countNumber(6);
   }
-
-  //sum
-  score[13].value = upperSum();
-  //bonus
-  if (score[13].value >= 65) {
-    score[14].value = 35;
-  }
   //three of a kind
   if (!score[6].locked) {
     if (ofAKind(3)) {
@@ -181,6 +182,12 @@ function updateScore() {
       score[12].value = 0;
     }
   }
+  //sum
+  score[13].value = upperSum();
+  //bonus
+  if (score[13].value >= 65) {
+    score[14].value = 35;
+  }
 
   score[15].value = totalBerekening();
   displayScores();
@@ -193,8 +200,6 @@ function displayScores() {
   document.querySelector("#player1Fours").textContent = score[3].value;
   document.querySelector("#player1Fives").textContent = score[4].value;
   document.querySelector("#player1Sixes").textContent = score[5].value;
-  document.querySelector("#player1Sum").textContent = score[13].value;
-  document.querySelector("#player1Bonus").textContent = score[14].value;
 
   document.querySelector("#player1ThreeOfAKind").textContent = score[6].value;
   document.querySelector("#player1FourOfAKind").textContent = score[7].value;
@@ -203,10 +208,14 @@ function displayScores() {
   document.querySelector("#player1LargeStraight").textContent = score[10].value;
   document.querySelector("#player1Chance").textContent = score[11].value;
   document.querySelector("#player1YAHTZEE").textContent = score[12].value;
+  
+  document.querySelector("#player1Sum").textContent = score[13].value;
+  document.querySelector("#player1Bonus").textContent = score[14].value;
   document.querySelector("#player1Total").textContent = score[15].value;
 }
 
 function lockScore(scoreId) {
+  const scoreCell = document.getElementById(scoreId);
   switch (scoreId) {
     case "player1Ones":
       score[0].locked = true;
@@ -248,7 +257,7 @@ function lockScore(scoreId) {
       score[12].locked = true;
       break;
   }
-  const scoreCell = document.getElementById(scoreId);
+  
   scoreCell.style.color = "darkgreen";
   scoreCell.style.backgroundColor = "lightgreen";
 }
@@ -256,6 +265,8 @@ function lockScore(scoreId) {
 function ofAKind(number) {
   let diceAantal = {};
 
+  //Maakt een frequentie array aan.
+  //[1,3,3,4,1] wordt { 1:2, 3:2, 4:1}
   diceValue.forEach((num) => {
     diceAantal[num] = (diceAantal[num] || 0) + 1;
   });
@@ -331,15 +342,17 @@ function totalBerekening() {
 }
 
 function smallStraight(arr) {
-  let arrString = arr.join("");
+  //Maakt een copy van de array, sorteerd die en zet hem om in string
+  let sortedArr = [...arr].sort((a, b) => a - b);
+  let arrString = sortedArr.join("");
 
-  const sequence1 = "1234";
-  const sequence2 = "2345";
-  const sequence3 = "3456";
+  const option1 = "1234";
+  const option2 = "2345";
+  const option3 = "3456";
   if (
-    arrString.includes(sequence1) ||
-    arrString.includes(sequence2) ||
-    arrString.includes(sequence3)
+    arrString.includes(option1) ||
+    arrString.includes(option2) ||
+    arrString.includes(option3)
   ) {
     return 30;
   } else {
@@ -348,11 +361,13 @@ function smallStraight(arr) {
 }
 
 function largeStraight(arr) {
-  let arrString = arr.join("");
+  //Maakt een copy van de array, sorteerd die en zet hem om in string
+  let sortedArr = [...arr].sort((a, b) => a - b);
+  let arrString = sortedArr.join("");
 
-  const Option1 = "12345";
-  const Option2 = "23456";
-  if (arrString.includes(Option1) || arrString.includes(Option2)) {
+  const option1 = "12345";
+  const option2 = "23456";
+  if (arrString.includes(option1) || arrString.includes(option2)) {
     return 40;
   } else {
     return 0;
